@@ -15,18 +15,21 @@
 /**
  * struct Resource - Struct to hold SDL resources
  * @window: Window to be rendered to
- * @renderer: Rendered to
+ * @renderer: Window renderer
  * @surface: Surface to be rendered to
+ * @Texture: Displayed texture
  */
 
 typedef struct Resource
 {
 	SDL_Window *window;
-	SDL_Window *renderer;
+	SDL_Renderer *renderer;
 	SDL_Surface *surface;
+	SDL_Texture *texture;
 } SDL_Resources;
 
 void free_resource(SDL_Resources *res);
 int sdl_init(SDL_Resources *resources);
+void sdl_renderer(SDL_Resources *res);
 
 #endif
