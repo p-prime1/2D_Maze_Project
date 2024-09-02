@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * sdl_init - Initializes SDL so we can use it functions
+ * sdl_init - Initializes SDL and Creates a window
  * @resources: A struct conatining SDL resources
  * Return: Returns 0 on success or -1 on failure
  */

@@ -13,7 +13,12 @@ void free_resource(SDL_Resources *res)
 		SDL_DestroyWindow(res->window);
 		res->window = NULL;
 	}
-
+	/*Destroy Renderer*/
+	if (res->renderer != NULL)
+	{
+		SDL_DestroyRenderer(res->renderer);
+		res->renderer = NULL;
+	}
 	/*Quits sdl subsytems*/
 	SDL_Quit();
 }
