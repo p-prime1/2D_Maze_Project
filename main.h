@@ -7,6 +7,7 @@
 #include <stdbool.h>
 #include <SDL.h>
 #include <SDL_render.h>
+#include <math.h>
 
 /*Screen Dimensions*/
 #define SCREEN_WIDTH 640
@@ -26,10 +27,12 @@ typedef struct Resource
 	SDL_Renderer *renderer;
 	SDL_Surface *surface;
 	SDL_Texture *texture;
+
 } SDL_Resources;
 
 void free_resource(SDL_Resources *res);
 int sdl_init(SDL_Resources *resources);
 void sdl_renderer(SDL_Resources *res);
+int ray_caster(SDL_Resources *res, int map[24][24]);
 
 #endif
