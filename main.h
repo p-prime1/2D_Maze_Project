@@ -32,7 +32,6 @@ typedef struct Resource
 
 void free_resource(SDL_Resources *res);
 int sdl_init(SDL_Resources *resources);
-void sdl_renderer(SDL_Resources *res);
-int ray_caster(SDL_Resources *res, int map[24][24]);
+int ray_caster(SDL_Resources *res, int map[10][10]);
 
 #endif

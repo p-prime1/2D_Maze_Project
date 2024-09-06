@@ -5,6 +5,18 @@
  */
 int main(void)
 {
+	int map[10][10] = {
+    	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+   	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    	{1, 0, 1, 0, 1, 0, 1, 0, 0, 1},
+    	{1, 0, 1, 0, 1, 0, 1, 0, 0, 1},
+    	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+   	{1, 0, 1, 0, 1, 0, 1, 0, 0, 1},
+    	{1, 0, 1, 0, 1, 0, 1, 0, 0, 1},
+    	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+	};
 
 	SDL_Resources res;
 
@@ -23,7 +35,7 @@ int main(void)
 				quit = true;
 		}
 		SDL_RenderClear(res.renderer);
-		SDL_RenderPresent(res.renderer);
+		ray_caster(&res, map);
 	}
 	free_resource(&res);
 
