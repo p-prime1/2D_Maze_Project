@@ -8,7 +8,7 @@ CFLAGS = -Wall -Werror -Wextra -pedantic $(shell sdl2-config --cflags)
 LIBS = $(shell sdl2-config --libs) -lSDL2_image
 
 #Linker flags
-LDFLAGS = $(shell sdl2-config --libs)
+LDFLAGS = $(shell sdl2-config --libs) -lm
 
 #Target executable
 TARGET = Run_Maze
