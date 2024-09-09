@@ -32,6 +32,8 @@ typedef struct Resource
 
 void free_resource(SDL_Resources *res);
 int sdl_init(SDL_Resources *resources);
-int ray_caster(SDL_Resources *res, int map[10][10]);
+void ray_caster(SDL_Resources *res, int map[24][24]);
+float degToRad(int a);
+int FixAng(int a);
 
 #endif
