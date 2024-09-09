@@ -7,24 +7,21 @@
  * Return: Returns the height of line to be drawn
  */
 
-void ray_caster(SDL_Resources *res, int map[24][24])
+void ray_caster(SDL_Resources *res, int map[24][24], Players_coordinates coordinates)
 {
 	double planeX = 0.0, planeY = 0.66; /* Camera plane or FOV */
-	int posX = 5, posY = 11; /*Starting position*/
+	int posX = coordinates->posX, posY = coordinates->posY;
+	double dirX = coordinates->dirX, dirY = coordinates->dirY;
 	double dirX = -1, dirY = 0;
 	double perpWallDist; /* Perpendicular wall distance */
-	int screenWidth = SCREEN_WIDTH;
-	int screenHeight = SCREEN_HEIGHT;
+	int screenWidth = SCREEN_WIDTH, screenHeight = SCREEN_HEIGHT;
 	int mapX, mapY, lineHeight, hit, side, x;
-	double rayDirX, rayDirY, stepX, stepY, cameraX, deltaDistX, deltaDistY;
-	double sideDistX, sideDistY;
+	double rayDirX, rayDirY, stepX, stepY, cameraX, deltaDistX, deltaDistY,sideDistX, sideDistY;
 	for (x = 0; x < screenWidth - 1; x++)
 	{
 		cameraX = 2 * x / (double)screenWidth - 1;
 		rayDirX = dirX + planeX * cameraX;
 		rayDirY = dirY + planeY * cameraX;
-		deltaDistX = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
-		deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
 		mapX = (int)posX;
 		mapY = (int)posY;
 		deltaDistX = (rayDirX == 0) ? 1e30 : fabs(1 / rayDirX);

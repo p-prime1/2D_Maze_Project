@@ -21,6 +21,13 @@
  * @Texture: Displayed texture
  */
 
+typedef struct coordinates
+{
+	int posX;
+	int posY;
+	double dirX;
+	double dirY;
+} players_coordinateslayers_coordinates;
 typedef struct Resource
 {
 	SDL_Window *window;
@@ -32,7 +39,7 @@ typedef struct Resource
 
 void free_resource(SDL_Resources *res);
 int sdl_init(SDL_Resources *resources);
-void ray_caster(SDL_Resources *res, int map[24][24]);
+void ray_caster(SDL_Resources *res, int map[24][24], Players_coordinates *coordinates);
 float degToRad(int a);
 int FixAng(int a);
 

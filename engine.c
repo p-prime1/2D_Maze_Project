@@ -33,6 +33,14 @@ int main(void)
 };
 
 	SDL_Resources res;
+  Players_coordinates coordinates;
+
+  coordinates.posX = 5
+	coordinates.posY = 11; /*Starting position*/
+	coordinates.dirX = -1;
+  coordinates.dirY = 0;
+  coordinates.dirX = -1;
+  coordinates.dirY = 0;
 
 	sdl_init(&res);
 
@@ -49,7 +57,7 @@ int main(void)
 				quit = true;
 		}
 		SDL_RenderClear(res.renderer);
-		ray_caster(&res, map);
+		ray_caster(&res, map, &coordinates);
 	}
 	free_resource(&res);
 
