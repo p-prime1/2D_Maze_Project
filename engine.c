@@ -3,9 +3,13 @@
 /**
  * main - Runs the programme
  */
+
+
 int main(void)
 {
-	int map[24][24]=	{
+
+int map[24][24]=
+{
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -32,20 +36,21 @@ int main(void)
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-	SDL_Resources res;
-  Players_coordinates coordinates;
 
-  coordinates.posX = 5
-	coordinates.posY = 11; /*Starting position*/
+	SDL_Resources res;
+	Players_coordinates coordinates;
+	coordinates.posX = 21;
+	coordinates.posY = 12; /*Starting position*/
 	coordinates.dirX = -1;
-  coordinates.dirY = 0;
-  coordinates.dirX = -1;
-  coordinates.dirY = 0;
+	coordinates.dirY = 0;
+	coordinates.planeY = 0.66;
+	coordinates.planeX = 0;
 
 	sdl_init(&res);
 
 	SDL_Event e;
 	bool quit = false;
+	
 
 	/*Keeps the window open*/
 	while (quit == false)
@@ -55,6 +60,28 @@ int main(void)
 			/*User quits*/
 			if (e.type == SDL_QUIT)
 				quit = true;
+			else if (e.type == SDL_KEYDOWN)
+			{
+				switch (e.key.keysym.sym)
+				{
+					case SDLK_UP:
+					move_forward(&coordinates, map);
+					break;
+					
+					case SDLK_DOWN:
+					move_backward(&coordinates, map);
+					break;
+
+					case SDLK_LEFT:
+					move_left(&coordinates);
+					break;
+					
+					case SDLK_RIGHT:
+					move_right(&coordinates);
+					break;
+				}
+				
+			}
 		}
 		SDL_RenderClear(res.renderer);
 		ray_caster(&res, map, &coordinates);

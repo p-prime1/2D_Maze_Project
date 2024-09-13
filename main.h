@@ -10,8 +10,19 @@
 #include <math.h>
 
 /*Screen Dimensions*/
-#define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 480
+#define SCREEN_WIDTH 720
+#define SCREEN_HEIGHT 540
+
+
+typedef struct coordinates
+{
+	double posX;
+	double posY;
+	double dirX;
+	double dirY;
+	double planeX;
+	double planeY;
+} Players_coordinates;
 
 /**
  * struct Resource - Struct to hold SDL resources
@@ -21,13 +32,6 @@
  * @Texture: Displayed texture
  */
 
-typedef struct coordinates
-{
-	int posX;
-	int posY;
-	double dirX;
-	double dirY;
-} players_coordinateslayers_coordinates;
 typedef struct Resource
 {
 	SDL_Window *window;
@@ -36,11 +40,14 @@ typedef struct Resource
 	SDL_Texture *texture;
 
 } SDL_Resources;
-
 void free_resource(SDL_Resources *res);
 int sdl_init(SDL_Resources *resources);
 void ray_caster(SDL_Resources *res, int map[24][24], Players_coordinates *coordinates);
 float degToRad(int a);
 int FixAng(int a);
+void move_left(Players_coordinates *cord);
+void move_right(Players_coordinates *cord);
+void move_forward(Players_coordinates *cord, int map[24][24]);
+void move_backward(Players_coordinates *cord, int map[24][24]);
 
 #endif

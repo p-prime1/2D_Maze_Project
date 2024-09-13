@@ -7,16 +7,18 @@
  * Return: Returns the height of line to be drawn
  */
 
-void ray_caster(SDL_Resources *res, int map[24][24], Players_coordinates coordinates)
+void ray_caster(SDL_Resources *res, int map[24][24], Players_coordinates *coordinates)
 {
-	double planeX = 0.0, planeY = 0.66; /* Camera plane or FOV */
-	int posX = coordinates->posX, posY = coordinates->posY;
+	double planeX = coordinates->planeX, planeY = coordinates->planeY;
+	double posX = coordinates->posX, posY = coordinates->posY;
 	double dirX = coordinates->dirX, dirY = coordinates->dirY;
-	double dirX = -1, dirY = 0;
+
 	double perpWallDist; /* Perpendicular wall distance */
 	int screenWidth = SCREEN_WIDTH, screenHeight = SCREEN_HEIGHT;
 	int mapX, mapY, lineHeight, hit, side, x;
 	double rayDirX, rayDirY, stepX, stepY, cameraX, deltaDistX, deltaDistY,sideDistX, sideDistY;
+	SDL_SetRenderDrawColor(res->renderer, 0, 0, 0, 255);
+	SDL_RenderClear(res->renderer);
 	for (x = 0; x < screenWidth - 1; x++)
 	{
 		cameraX = 2 * x / (double)screenWidth - 1;
@@ -45,7 +47,7 @@ void ray_caster(SDL_Resources *res, int map[24][24], Players_coordinates coordin
 		else
 		{
 			stepY = 1;
-			sideDistY = (mapY + 1.0 - posX) * deltaDistX;
+			sideDistY = (mapY + 1.0 - posX) * deltaDistY;
 		}
 		while (hit == 0)
 		{
@@ -82,9 +84,18 @@ void ray_caster(SDL_Resources *res, int map[24][24], Players_coordinates coordin
 		drawEnd = lineHeight / 2 + screenHeight / 2;
 		if (drawEnd >= screenHeight)
 			drawEnd = screenHeight - 1;
+
+		SDL_SetRenderDrawColor(res->renderer, 0, 0, 255, 255);
+		SDL_RenderDrawLine(res->renderer, x, 0, x, drawStart);
 		/*Set Wall color*/
-		SDL_SetRenderDrawColor(res->renderer, 255, 0, 0, 255);
+		if (side == 1)
+        	SDL_SetRenderDrawColor(res->renderer, 255, 0, 0, 255);  /* Red for EW walls */
+        else
+		    SDL_SetRenderDrawColor(res->renderer, 200, 0, 0, 255);
 		SDL_RenderDrawLine(res->renderer, x, drawStart, x, drawEnd);
+
+		SDL_SetRenderDrawColor(res->renderer, 0, 255, 0, 255);
+		SDL_RenderDrawLine(res->renderer, x, drawEnd, x, screenHeight);
 	}
 	SDL_RenderPresent(res->renderer);
 }
