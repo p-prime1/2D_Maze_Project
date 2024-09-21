@@ -7,7 +7,7 @@
  */
 void move_forward(Players_coordinates *cord, int map[24][24])
 {
-	double moveSpeed = 0.5;
+	double moveSpeed = 0.15;
 	
 	/*Check if there's a collision in the X direction*/
 	if (map[(int)(cord->posX + cord->dirX * moveSpeed)][(int)cord->posY] == 0)
@@ -30,7 +30,7 @@ void move_forward(Players_coordinates *cord, int map[24][24])
  */
 void move_backward(Players_coordinates *cord, int map[24][24])
 {
-	double moveSpeed = 0.5;
+	double moveSpeed = 0.15;
 
 	if (map[(int)(cord->posX - cord->dirX * moveSpeed)][(int)cord->posY] == 0)
 		cord->posX -= cord->dirX * moveSpeed;
@@ -49,7 +49,7 @@ void move_backward(Players_coordinates *cord, int map[24][24])
 
 void move_left(Players_coordinates *cord)
 {
-	double rotSpeed = 0.05;
+	double rotSpeed = -0.05;
 	double dirX = cord->dirX;
 	double dirY = cord->dirY;
 	double planeY = cord->planeY;
@@ -75,7 +75,7 @@ void move_left(Players_coordinates *cord)
 
 void move_right(Players_coordinates *cord)
 {
-	double rotSpeed = 0.05;
+	double rotSpeed = -0.05;
 	double dirX = cord->dirX;
 	double dirY = cord->dirY;
 	double oldDirX = dirX;
