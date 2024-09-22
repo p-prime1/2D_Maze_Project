@@ -17,6 +17,7 @@ void ray_caster(SDL_Resources *res, int map[24][24], Players_coordinates *coordi
 	int screenWidth = SCREEN_WIDTH, screenHeight = SCREEN_HEIGHT;
 	int mapX, mapY, lineHeight, hit, side, x;
 	double rayDirX, rayDirY, stepX, stepY, cameraX, deltaDistX, deltaDistY,sideDistX, sideDistY;
+	/*double nearPlaneDist = 0.2; Minimum Dist a player can go to a wall*/
 	SDL_SetRenderDrawColor(res->renderer, 0, 0, 0, 255);
 	SDL_RenderClear(res->renderer);
 	for (x = 0; x < screenWidth - 1; x++)
@@ -73,7 +74,7 @@ void ray_caster(SDL_Resources *res, int map[24][24], Players_coordinates *coordi
 			perpWallDist = (sideDistY - deltaDistY);
 		}
 		if (perpWallDist <= 0)
-			perpWallDist = 0.1;
+			perpWallDist = 0.5;
 		int drawStart, drawEnd;
 		/*Calculate height of line to draw on screen*/
 		lineHeight = (int)(screenHeight / perpWallDist);
@@ -97,6 +98,5 @@ void ray_caster(SDL_Resources *res, int map[24][24], Players_coordinates *coordi
 		SDL_SetRenderDrawColor(res->renderer, 0, 255, 0, 255);
 		SDL_RenderDrawLine(res->renderer, x, drawEnd, x, screenHeight);
 	}
-	SDL_RenderPresent(res->renderer);
 }
 

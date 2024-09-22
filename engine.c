@@ -12,8 +12,8 @@ int main(void)
 	int rows = 0, cols = 0;
 	SDL_Resources res;
 	Players_coordinates coordinates;
-	coordinates.posX = 2;
-	coordinates.posY = 2; /*Starting position*/
+	coordinates.posX = 1.5;
+	coordinates.posY = 1.5; /*Starting position*/
 	coordinates.dirX = 1;
 	coordinates.dirY = 0;
 	coordinates.planeY = 0.66;
@@ -25,7 +25,7 @@ int main(void)
 
 	SDL_Event e;
 	bool quit = false;
-	
+	bool show_mini_map;
 
 	/*Keeps the window open*/
 	while (quit == false)
@@ -54,12 +54,23 @@ int main(void)
 					case SDLK_RIGHT:
 					move_right(&coordinates);
 					break;
+
+					case SDLK_m:
+					show_mini_map = true;
+					break;
+
+					case SDLK_o:
+					show_mini_map = false;
+					break;
 				}
 				
 			}
 		}
 		SDL_RenderClear(res.renderer);
 		ray_caster(&res, map, &coordinates);
+		if (show_mini_map)
+			draw_minimap(&res, map, &coordinates);
+		SDL_RenderPresent(res.renderer);
 	}
 	free_resource(&res);
 

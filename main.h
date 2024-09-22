@@ -56,4 +56,5 @@ void move_left(Players_coordinates *cord);
 void move_right(Players_coordinates *cord);
 void move_forward(Players_coordinates *cord, int map[24][24]);
 void move_backward(Players_coordinates *cord, int map[24][24]);
+void draw_minimap(SDL_Resources *res, int map[24][24], Players_coordinates *cord);
 #endif
