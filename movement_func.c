@@ -8,18 +8,19 @@
 void move_forward(Players_coordinates *cord, int map[24][24])
 {
 	double moveSpeed = 0.15;
-	
+	/*double playerRadius= 1;*/
+
 	/*Check if there's a collision in the X direction*/
-	if (map[(int)(cord->posX + cord->dirX * moveSpeed)][(int)cord->posY] == 0)
+	if (!(map[(int)(cord->posX + cord->dirX * moveSpeed)][(int)cord->posY]))
 		cord->posX += cord->dirX * moveSpeed;
 
-	else if (map[(int)cord->posX][(int)(cord->posY + cord->dirY * moveSpeed)] == 0)
+	else if (!(map[(int)cord->posX][(int)(cord->posY + cord->dirY * moveSpeed)]))
 		cord->posY += cord->dirY * moveSpeed;
 
 	/*Check for collision in the Y direction*/
-	if (map[(int)cord->posX][(int)(cord->posY + cord->dirY * moveSpeed)] == 0)
+	if (!(map[(int)cord->posX][(int)(cord->posY + cord->dirY * moveSpeed)]))
 		cord->posY += cord->dirY * moveSpeed;
-	else if (map[(int)(cord->posX + cord->dirY * moveSpeed)][(int)cord->posY]== 0)
+	else if (!(map[(int)(cord->posX + cord->dirY * moveSpeed)][(int)cord->posY]))
 		cord->posX += cord->dirX * moveSpeed;
 }
 
@@ -31,14 +32,15 @@ void move_forward(Players_coordinates *cord, int map[24][24])
 void move_backward(Players_coordinates *cord, int map[24][24])
 {
 	double moveSpeed = 0.15;
+	/*double playerRadius = 1;*/
 
-	if (map[(int)(cord->posX - cord->dirX * moveSpeed)][(int)cord->posY] == 0)
+	if (!(map[(int)(cord->posX - cord->dirX * moveSpeed)][(int)cord->posY]))
 		cord->posX -= cord->dirX * moveSpeed;
-	else if (map[(int)(cord->posX)][(int)(cord->posY - cord->dirY * moveSpeed)] == 0)
+	else if (!(map[(int)cord->posX][(int)(cord->posY - cord->dirY * moveSpeed)]))
 		cord->posY -= cord->dirY * moveSpeed;
-	if (map[(int)cord->posX][(int)(cord->posY - cord->dirY * moveSpeed)] == 0)
+	if (!(map[(int)cord->posX][(int)(cord->posY - cord->dirY * moveSpeed)]))
 		cord->posY -= cord->dirY * moveSpeed;
-	else if (map[(int)(cord->posX - cord->dirX * moveSpeed)][(int)cord->posY] == 0)
+	else if (!(map[(int)(cord->posX - cord->dirX * moveSpeed)][(int)cord->posY]))
 		cord->posX -= cord->dirX * moveSpeed;
 }
 
@@ -56,16 +58,12 @@ void move_left(Players_coordinates *cord)
 	double planeX = cord->planeX;
 	double oldDirX = dirX;
 
-	dirX = dirX * cos(rotSpeed) - dirY * sin(rotSpeed);
-	dirY = oldDirX * sin(rotSpeed) + dirY * cos(rotSpeed);
+	cord->dirX = dirX * cos(rotSpeed) - dirY * sin(rotSpeed);
+	cord->dirY = oldDirX * sin(rotSpeed) + dirY * cos(rotSpeed);
 	double oldPlaneX = planeX;
 
-	planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
-	planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
-	cord->planeX = planeX;
-	cord->planeY = planeY;
-	cord->dirX = dirX;
-	cord->dirY = dirY;
+	cord->planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
+	cord->planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
 }
 
 /**
@@ -82,15 +80,11 @@ void move_right(Players_coordinates *cord)
 	double planeX = cord->planeX;
 	double planeY = cord->planeY;
 
-	dirX = dirX * cos(-rotSpeed) - dirY * sin(-rotSpeed);
-	dirY = oldDirX * sin(-rotSpeed) + dirY * cos(-rotSpeed);
+	cord->dirX = dirX * cos(-rotSpeed) - dirY * sin(-rotSpeed);
+	cord->dirY = oldDirX * sin(-rotSpeed) + dirY * cos(-rotSpeed);
 	double oldPlaneX = planeX;
 
-	planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
-	planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
-	cord->planeX = planeX;
-	cord->planeY = planeY;
-	cord->dirX = dirX;
-	cord->dirY = dirY;
+	cord->planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
+	cord->planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
 }
 

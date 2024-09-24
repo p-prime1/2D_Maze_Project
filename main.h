@@ -11,8 +11,8 @@
 /*Screen Dimensions*/
 #define SCREEN_WIDTH 720
 #define SCREEN_HEIGHT 540
-#define MAX_ROWS 24
-#define MAX_COLS 24
+#define ROWS 24
+#define COLS 24
 
 /**
  * struct coordinates - Struct to hold the coordinates of the player
@@ -46,7 +46,7 @@ typedef struct Resource
 	SDL_Surface *surface;
 	SDL_Texture *texture;
 } SDL_Resources;
-void parse_map(const char *filename, int map[MAX_ROWS][MAX_COLS], int *rows, int *cols);
+void parse_map(const char *filename, int map[ROWS][COLS], int *rows, int *cols);
 void free_resource(SDL_Resources *res);
 int sdl_init(SDL_Resources *resources);
 void ray_caster(SDL_Resources *res, int map[24][24], Players_coordinates *coord);
@@ -56,5 +56,5 @@ void move_left(Players_coordinates *cord);
 void move_right(Players_coordinates *cord);
 void move_forward(Players_coordinates *cord, int map[24][24]);
 void move_backward(Players_coordinates *cord, int map[24][24]);
-void draw_minimap(SDL_Resources *res, int map[24][24], Players_coordinates *cord);
+void minmap(SDL_Resources *res, int map[24][24], Players_coordinates *cord);
 #endif

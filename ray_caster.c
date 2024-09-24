@@ -67,12 +67,7 @@ void ray_caster(SDL_Resources *res, int map[24][24], Players_coordinates *coordi
 			if (map[mapX][mapY] > 0)
 				hit = 1;
 		}
-		if (side == 0)
-			perpWallDist = (sideDistX - deltaDistX);
-		else
-		{
-			perpWallDist = (sideDistY - deltaDistY);
-		}
+		perpWallDist = (side == 0) ? (sideDistX - deltaDistX) : (sideDistY - deltaDistY);
 		if (perpWallDist <= 0)
 			perpWallDist = 0.5;
 		int drawStart, drawEnd;

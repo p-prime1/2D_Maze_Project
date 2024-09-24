@@ -69,7 +69,7 @@ int main(void)
 		SDL_RenderClear(res.renderer);
 		ray_caster(&res, map, &coordinates);
 		if (show_mini_map)
-			draw_minimap(&res, map, &coordinates);
+			minmap(&res, map, &coordinates);
 		SDL_RenderPresent(res.renderer);
 	}
 	free_resource(&res);
