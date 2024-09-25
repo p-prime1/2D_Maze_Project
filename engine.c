@@ -2,13 +2,14 @@
 
 /**
  * main - Runs the programme
+ * Return: Returns 0 on success
  */
 
 
 int main(void)
 {
 
-	int map[MAX_ROWS][MAX_COLS];
+	int map[ROWS][COLS];
 	int rows = 0, cols = 0;
 	SDL_Resources res;
 	Players_coordinates coordinates;
@@ -63,7 +64,6 @@ int main(void)
 					show_mini_map = false;
 					break;
 				}
-				
 			}
 		}
 		SDL_RenderClear(res.renderer);
@@ -76,4 +76,3 @@ int main(void)
 
 	return (0);
 }
-

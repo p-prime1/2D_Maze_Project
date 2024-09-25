@@ -9,8 +9,8 @@
 #include <math.h>
 
 /*Screen Dimensions*/
-#define SCREEN_WIDTH 720
-#define SCREEN_HEIGHT 540
+#define SCREEN_WIDTH 1024
+#define SCREEN_HEIGHT 720
 #define ROWS 24
 #define COLS 24
 
@@ -46,10 +46,12 @@ typedef struct Resource
 	SDL_Surface *surface;
 	SDL_Texture *texture;
 } SDL_Resources;
-void parse_map(const char *filename, int map[ROWS][COLS], int *rows, int *cols);
+void parse_map(const char *filename, int map[ROWS][COLS], int *rows,
+		int *cols);
 void free_resource(SDL_Resources *res);
 int sdl_init(SDL_Resources *resources);
-void ray_caster(SDL_Resources *res, int map[24][24], Players_coordinates *coord);
+void ray_caster(SDL_Resources *res, int map[24][24],
+		Players_coordinates *coord);
 float degToRad(int a);
 int FixAng(int a);
 void move_left(Players_coordinates *cord);
